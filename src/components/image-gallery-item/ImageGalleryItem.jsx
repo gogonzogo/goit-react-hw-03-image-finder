@@ -1,4 +1,6 @@
-export const ImageGalleryItem = ({image}) => {
+import PropTypes from 'prop-types';
+
+export const ImageGalleryItem = ({ image }) => {
   return (
     <li className="ImageGalleryItem">
       <img
@@ -11,3 +13,7 @@ export const ImageGalleryItem = ({image}) => {
     </li>
   );
 };
+
+ImageGalleryItem.propTypes = {
+  image: PropTypes.object.isRequired,
+}

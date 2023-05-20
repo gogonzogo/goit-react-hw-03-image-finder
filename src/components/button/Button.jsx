@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const Button = ({ state, onClick }) => {
   const { images, page, totalHits } = state;
   const totalPages = Math.ceil(totalHits / 12);
@@ -13,3 +15,12 @@ export const Button = ({ state, onClick }) => {
     return null;
   }
 };
+
+Button.propTypes = {
+  state: PropTypes.shape({
+    images: PropTypes.array.isRequired,
+    page: PropTypes.number.isRequired,
+    totalHits: PropTypes.number.isRequired,
+  }).isRequired,
+  onClick: PropTypes.func.isRequired,
+}

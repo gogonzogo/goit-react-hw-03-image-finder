@@ -1,10 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
-export const Searchbar = props => {
+export const Searchbar = ({ onSubmit }) => {
   return (
     <header className="Searchbar">
-      <form className="SearchForm" onSubmit={e => props.onSubmit(e)}>
+      <form className="SearchForm" onSubmit={e => onSubmit(e)}>
         <button type="submit" className="SearchForm-button">
           <FontAwesomeIcon
             icon={faMagnifyingGlass}
@@ -24,3 +25,7 @@ export const Searchbar = props => {
     </header>
   );
 };
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+}

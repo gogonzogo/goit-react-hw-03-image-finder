@@ -1,5 +1,6 @@
 import { ImageGalleryItem } from '../image-gallery-item/ImageGalleryItem';
 import { Modal } from 'components/modal/Modal';
+import PropTypes from "prop-types";
 
 export const ImageGallery = ({ state, handleGalleryClick }) => {
   const { searchFail, images, modalOpen, modalImg, modalImgAlt } = state;
@@ -15,4 +16,15 @@ export const ImageGallery = ({ state, handleGalleryClick }) => {
       </ul>
     );
   }
+};
+
+ImageGallery.propTypes = {
+  state: PropTypes.shape({
+    searchFail: PropTypes.bool.isRequired,
+    images: PropTypes.array.isRequired,
+    modalOpen: PropTypes.bool.isRequired,
+    modalImg: PropTypes.string.isRequired,
+    modalImgAlt: PropTypes.string.isRequired,
+  }).isRequired,
+  handleGalleryClick: PropTypes.func.isRequired,
 };
