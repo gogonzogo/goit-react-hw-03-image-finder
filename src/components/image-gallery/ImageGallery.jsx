@@ -3,7 +3,6 @@ import { Modal } from 'components/modal/Modal';
 
 export const ImageGallery = ({ state, handleGalleryClick }) => {
   const { searchFail, images, modalOpen, modalImg, modalImgAlt } = state;
-  console.log(images)
   if (searchFail) {
     return <h1 className="noImagesText">No images found with your search</h1>;
   } else {
