@@ -1,8 +1,7 @@
 import { MagnifyingGlass } from 'react-loader-spinner';
 
 export const Loader = ({ loading }) => {
-  return (
-    loading === 'yes' && (
+  return loading && (
       <div className="loaderContainer">
         <MagnifyingGlass
           visible={true}
@@ -16,5 +15,4 @@ export const Loader = ({ loading }) => {
         />
       </div>
     )
-  );
 };

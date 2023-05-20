@@ -132,6 +132,11 @@ main {
   font-size: 18px;
 }
 
+.noImagesText {
+  text-align: center;
+  margin-top: 30px;
+}
+
 /*
  * Стили компонента ImageGallery
  */
@@ -195,6 +200,8 @@ main {
 .modal {
   max-width: 80vw;
   max-height: 80vh;
+  display: flex;
+  justify-content: center;
 }
 
 /*

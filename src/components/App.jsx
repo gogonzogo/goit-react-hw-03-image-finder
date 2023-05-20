@@ -11,33 +11,44 @@ class App extends Component {
     page: 1,
     totalHits: 0,
     images: [],
-    isLoading: true,
+    isLoading: false,
     modalOpen: false,
     modalImg: '',
     modalImgAlt: '',
+    searchFail: false,
   };
 
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     const userQuery = e.currentTarget.elements.search.value.trim();
     if (!userQuery) {
       return;
     } else {
-      this.setState({ searchQuery: userQuery, isLoading: true }, async () => {
-        const fetchedImages = await pixabayFetchImages(
-          this.state.searchQuery,
-          this.state.page
-        );
-        this.setState(prevState => ({
-          images: fetchedImages.hits,
-          totalHits: fetchedImages.totalHits,
-          isLoading: false,
-        }));
-      });
+      this.setState(
+        {
+          searchQuery: userQuery,
+          page: 1,
+          isLoading: true,
+          searchFail: false,
+        },
+        async () => {
+          const fetchedImages = await pixabayFetchImages(
+            this.state.searchQuery,
+            this.state.page
+          );
+          this.setState(prevState => ({
+            images: fetchedImages.hits,
+            totalHits: fetchedImages.totalHits,
+            isLoading: false,
+            searchFail: fetchedImages.hits.length === 0,
+          }));
+        }
+      );
+      e.currentTarget.reset();
     }
-  };
+  }
 
-  loadMoreImages = async totalPages => {
+  loadMoreImages = async (totalPages) => {
     const { page } = this.state;
     if (totalPages > page) {
       this.setState({ isLoading: true }, async () => {
